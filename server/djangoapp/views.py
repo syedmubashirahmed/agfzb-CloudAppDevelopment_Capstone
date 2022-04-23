@@ -53,4 +53,22 @@ def get_dealerships(request):
 # Create a `add_review` view to submit a review
 # def add_review(request, dealer_id):
 # ...
-
+def login_request(request):
+    context = {}
+    # Handles POST request
+    if request.method == "POST":
+        # Get username and password from request.POST dictionary
+        username = request.POST['username']
+        password = request.POST['psw']
+        # Try to check if provide credential can be authenticated
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            # If user is valid, call login method to login current user
+            login(request, user)
+            #return render(request,'djangoapp/loggedin.html',context)
+            return redirect('onlinecourse:index')
+        else:
+            # If not, return to login page again
+            return render(request, 'djangoapp/login_page.html', context)
+    else:
+        return render(request, 'djangoapp/login_page.html', context)

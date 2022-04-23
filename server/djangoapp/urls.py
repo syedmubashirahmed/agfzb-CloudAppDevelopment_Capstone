@@ -23,6 +23,8 @@ urlpatterns = [
     path(route='static',view=views.static,name='static'),
     path(route='about',view=views.about,name='about'),
     path(route='contact',view=views.contact,name='contact'),
+    path(route='login_page',view=views.login_request,name='login_page'),
+    path(route='loggedin',view=views.login_request,name='loggedin'),
     # path for dealer reviews view
 
     # path for add a review view
