@@ -65,8 +65,8 @@ def login_request(request):
         if user is not None:
             # If user is valid, call login method to login current user
             login(request, user)
-            #return render(request,'djangoapp/loggedin.html',context)
-            return redirect('onlinecourse:index')
+            return render(request,'djangoapp/loggedin.html',context)
+            #return redirect('loggedin.html')
         else:
             # If not, return to login page again
             return render(request, 'djangoapp/login_page.html', context)
