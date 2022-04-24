@@ -22,6 +22,7 @@ def staticview(request):
 def aboutview(request):
     return(render(request,'djangoapp/about.html'))
 def logoutview(request):
+    logout(request)
     return(render(request,'djangoapp/logoutpage.html'))
 
 # Create a `contact` view to return a static contact page
@@ -29,6 +30,32 @@ def contactview(request):
     return(render(request,'djangoapp/contact.html'))
 def logged_inview(request):
     return(render(request,'djangoapp/loggedin.html'))
+def registrationview(request):
+    context = {}
+    if request.method == 'GET':
+        return render(request, 'djangoapp/registration.html', context)
+    elif request.method == 'POST':
+        # Check if user exists
+        username = request.POST['username']
+        password = request.POST['psw']
+        first_name = request.POST['firstname']
+        last_name = request.POST['lastname']
+        user_exist = False
+        try:
+            User.objects.get(username=username)
+            user_exist = True
+        except:
+            logger.error("New user")
+        if not user_exist:
+            user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
+                                            password=password)
+            login(request, user)
+            return redirect("djangoapp:index")
+        else:
+            context['message'] = "User already exists."
+            return render(request, 'djangoapp/registration.html', context)
+def registeredview(request):
+    return(render(request,'djangoapp/login_page.html'))
 
 # Create a `login_request` view to handle sign in request
 # def login_request(request):
