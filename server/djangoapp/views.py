@@ -15,17 +15,20 @@ logger = logging.getLogger(__name__)
 
 
 # Create your views here.
-def static(request):
+def staticview(request):
     return(render(request,'djangoapp/static.html'))
 
 # Create an `about` view to render a static about page
-def about(request):
+def aboutview(request):
     return(render(request,'djangoapp/about.html'))
-
+def logoutview(request):
+    return(render(request,'djangoapp/logoutpage.html'))
 
 # Create a `contact` view to return a static contact page
-def contact(request):
+def contactview(request):
     return(render(request,'djangoapp/contact.html'))
+def logged_inview(request):
+    return(render(request,'djangoapp/loggedin.html'))
 
 # Create a `login_request` view to handle sign in request
 # def login_request(request):
@@ -40,7 +43,7 @@ def contact(request):
 # ...
 
 # Update the `get_dealerships` view to render the index page with a list of dealerships
-def get_dealerships(request):
+def get_dealershipsview(request):
     context = {}
     if request.method == "GET":
         return render(request, 'djangoapp/index.html', context)
@@ -53,7 +56,7 @@ def get_dealerships(request):
 # Create a `add_review` view to submit a review
 # def add_review(request, dealer_id):
 # ...
-def login_request(request):
+def login_requestview(request):
     context = {}
     # Handles POST request
     if request.method == "POST":
@@ -66,7 +69,7 @@ def login_request(request):
             # If user is valid, call login method to login current user
             login(request, user)
             return render(request,'djangoapp/loggedin.html',context)
-            #return redirect('loggedin.html')
+           # return redirect('loggedin.html')
         else:
             # If not, return to login page again
             return render(request, 'djangoapp/login_page.html', context)

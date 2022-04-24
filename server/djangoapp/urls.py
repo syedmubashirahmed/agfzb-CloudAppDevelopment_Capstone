@@ -19,12 +19,13 @@ urlpatterns = [
 
     # path for logout
 
-    path(route='', view=views.get_dealerships, name='index'),
-    path(route='static',view=views.static,name='static'),
-    path(route='about',view=views.about,name='about'),
-    path(route='contact',view=views.contact,name='contact'),
-    path(route='login_page',view=views.login_request,name='login_page'),
-    path(route='loggedin',view=views.login_request,name='loggedin'),
+    path(route='', view=views.get_dealershipsview, name='index'),
+    path(route='static',view=views.staticview,name='static'),
+    path(route='about',view=views.aboutview,name='about'),
+    path(route='contact',view=views.contactview,name='contact'),
+    path(route='login_page',view=views.login_requestview,name='login_page'),
+    path(route='loggedin',view=views.logged_inview,name='loggedin'),
+    path(route='logoutpage',view=views.logoutview,name='logoutpage'),
     # path for dealer reviews view
 
     # path for add a review view
