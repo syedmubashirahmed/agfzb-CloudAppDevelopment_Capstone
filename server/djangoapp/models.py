@@ -17,16 +17,20 @@ class CarMake(models.Model):
     def __str__(self):
         return self.carname
 class CarModel(models.Model):
-     members = models.ManyTooneField(carmake))
-     dealerid=models.CharField(max_length=10)
-     modelchoice=(
+     carmodel= models.ForeignKey(CarMake,on_delete=models.CASCADE)
+     dealerid=models.IntegerField(default=999)
+     name=models.CharField(max_length=20,default="Mercedes")
+     Setan='se'
+     SUV='su'
+     WAGON='wa'
+     modelchoice=[
          ('se','Sedan'),
          ('su','SUV'),
          ('wa','WAGON')
-     )
+     ]
 
-     type=models.CharField(max_lengnth=2,choices=modelchoice)
-     year=models.IntegerField
+     type=models.CharField(max_length=2,choices=modelchoice,default='wa')
+     year=models.IntegerField(default=2022)
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
 # - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
