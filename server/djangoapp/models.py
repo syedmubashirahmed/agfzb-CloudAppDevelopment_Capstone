@@ -13,7 +13,7 @@ class CarMake(models.Model):
     
     carname = models.CharField(max_length=30)
     description = models.CharField(max_length=30)
-
+    carcolor=models.CharField(max_length=10,default='red')
     def __str__(self):
         return self.carname
 class CarModel(models.Model):
