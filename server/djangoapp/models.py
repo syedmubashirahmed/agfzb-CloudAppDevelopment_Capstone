@@ -13,23 +13,27 @@ class CarMake(models.Model):
     
     carname = models.CharField(max_length=30)
     description = models.CharField(max_length=30)
-    carcolor=models.CharField(max_length=10,default='red')
+   # color=models.CharField(max_length=10,default='red')
     def __str__(self):
         return self.carname
 class CarModel(models.Model):
      carmodel= models.ForeignKey(CarMake,on_delete=models.CASCADE)
      dealerid=models.IntegerField(default=999)
      name=models.CharField(max_length=20,default="Mercedes")
-     Setan='se'
-     SUV='su'
-     WAGON='wa'
+     se ='Setan'
+     su='SUV'
+     wa='WAGON'
+    
      modelchoice=[
-         ('se','Sedan'),
-         ('su','SUV'),
-         ('wa','WAGON')
+        ('Setan','se'),
+         ('SUV','su'),
+         ('WAGON','wa')
+         #('se','Sedan'),
+         #('su','SUV'),
+         #('wa','WAGON')
      ]
 
-     type=models.CharField(max_length=2,choices=modelchoice,default='wa')
+     type=models.CharField(max_length=10,choices=modelchoice,default='wa')
      year=models.IntegerField(default=2022)
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:

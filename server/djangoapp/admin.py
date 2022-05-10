@@ -10,7 +10,7 @@ from .models import CarMake,CarModel
 # CarModelInline class
 class CarModelInline(admin.ModelAdmin):
     model=CarModel
-    extra=0
+    extra=2
 
 class CarModelAdmin(admin.ModelAdmin):
     pass
@@ -22,4 +22,5 @@ class CarMakeAdmin:
     inlines=[CarModelInline]
 
 # Register models here
-admin.site.register(CarMake,CarModel)
+admin.site.register(CarMake)
+admin.site.register(CarModel)
