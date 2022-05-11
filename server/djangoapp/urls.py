@@ -10,26 +10,29 @@ urlpatterns = [
     # name the URL
 
     # path for about view
-
+    path(route='', view=views.get_dealerships, name='index'),
+    #week 1 T4
+    path(route='about', view=views.about, name='about'),
     # path for contact us view
+    path(route='contact', view=views.contact, name='contact'),
 
     # path for registration
+    #week 2 t7
+    path('registration/', view=views.registration_request, name='registration'),
 
     # path for login
+    #week 2 t 5
+    path(route='login/', view=views.login_request, name='login'),
 
     # path for logout
+    #week 2 t 5
+    path(route='logout/', view=views.logout_request, name='logout'),
 
-    path(route='', view=views.get_dealershipsview, name='index'),
-    path(route='static',view=views.staticview,name='static'),
-    path(route='about',view=views.aboutview,name='about'),
-    path(route='contact',view=views.contactview,name='contact'),
-    path(route='login_page',view=views.login_requestview,name='login_page'),
-    path(route='loggedin',view=views.logged_inview,name='loggedin'),
-    path(route='logoutpage',view=views.logoutview,name='logoutpage'),
-    path(route='registration',view=views.registrationview,name='registration'),
-    path(route='registered',view=views.registeredview,name='registered'),
+    
+
     # path for dealer reviews view
-
+    path('dealer/<int:dealer_id>/', view=views.get_dealer_details, name='dealer_details'),
     # path for add a review view
+    path(route='addreview/<int:dealer_id>/', view=views.add_review, name='add_review')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
