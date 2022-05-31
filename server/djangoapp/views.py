@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 # Create an `about` view to render a static about page
-#week 1 T4
+
 def about(request):
     context = {}
     if request.method == "GET":
@@ -26,14 +26,14 @@ def about(request):
 
 
 # Create a `contact` view to return a static contact page
-#Week 1 T4
+
 def contact(request):
     context = {}
     if request.method == "GET":
         return render(request, 'djangoapp/contact.html', context)
 
 # Create a `login_request` view to handle sign in request
-#week 2 t5
+
 def login_request(request):
     context = {}
     url = "https://08663624.us-south.apigw.appdomain.cloud/api/dealership"
@@ -62,7 +62,7 @@ def login_request(request):
 # Week 2 T5
 def logout_request(request):
     context = {}
-    url = "https://08663624.us-south.apigw.appdomain.cloud/api/dealership"
+    url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/getalldealers"
     dealerships = get_dealers_from_cf(url)
     # Concat all dealer's short name
     context["dealership_list"]=dealerships
@@ -112,8 +112,8 @@ def registration_request(request):
 def get_dealerships(request):
     if request.method == "GET":
         context={}
-        url = "https://08663624.us-south.apigw.appdomain.cloud/api/dealership"
-        apikey="_xKRLnH-xVpGqx9u0VBB3dZUTVxhZ8JNVyxYY6ooCjB2"
+        url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/getalldealers"
+       
         # Get dealers from the URL
         dealerships = get_dealers_from_cf(url)
         # Concat all dealer's short name
@@ -123,18 +123,15 @@ def get_dealerships(request):
 
 
 # Create a `get_dealer_details` view to render the reviews of a dealer
-# def get_dealer_details(request, dealer_id):
+
 def get_dealer_details(request, dealer_id):
     context={}
-    url = "https://08663624.us-south.apigw.appdomain.cloud/api/review"
-    apikey="_xKRLnH-xVpGqx9u0VBB3dZUTVxhZ8JNVyxYY6ooCjB2"
-    #print(dealer_id)
-    # Get dealers from the URL
+    url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/action-api"
     dealer_details = get_dealer_reviews_from_cf(url,dealer_id)
     context["dealer_id"]=dealer_id
     context["reviews"]=dealer_details
     return render(request, 'djangoapp/dealer_details.html', context)
-# Create a `add_review` view to submit a review
+# `add_review` 
 def add_review(request, dealer_id):
     context = {}
     # If it is a GET request, just render the add_review page
@@ -172,8 +169,8 @@ def add_review(request, dealer_id):
                 review["car_make"]=None
                 review["car_model"]=None
                 review["car_year"]=None
-            json_result = post_request("https://08663624.us-south.apigw.appdomain.cloud/api/review", review, dealerId=dealer_id)
-            print(json_result)
+            json_result = post_request("https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/action-api", review, dealerId=dealer_id)
+            
             if "error" in json_result:
                 context["message"] = "ERROR: Review was not submitted."
             else:
