@@ -36,7 +36,7 @@ def contact(request):
 
 def login_request(request):
     context = {}
-    url = "https://08663624.us-south.apigw.appdomain.cloud/api/dealership"
+    url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/getalldealers"
     dealerships = get_dealers_from_cf(url)
     # Concat all dealer's short name
     context["dealership_list"]=dealerships
@@ -136,7 +136,7 @@ def add_review(request, dealer_id):
     context = {}
     # If it is a GET request, just render the add_review page
     if request.method == 'GET':
-        url = "https://08663624.us-south.apigw.appdomain.cloud/api/dealership"
+        url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/getalldealers"
         # Get dealers from the URL
         context = {
             "dealer_id": dealer_id,
