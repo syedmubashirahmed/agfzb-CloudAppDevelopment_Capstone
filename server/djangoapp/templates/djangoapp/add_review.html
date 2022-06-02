@@ -12,7 +12,7 @@
 </head>
     <body>
         <header class="pb-5">
-        <nav class=" navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav class=" navbar navbar-expand-md navbar-primary fixed-top bg-light">
             <a class=" navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars &#128663;</a>
             {% if user.is_authenticated %}
             <div class="ml-auto">
@@ -49,7 +49,7 @@
             <label for="car"><b>Select vehicle (if purchased)</b></label>
             <br>
             <select name="car" id="car" class="form-select" required>
-                {% for car in cars %}
+                {% for car in carmodel %}
                     <option selected value="{{car.make.name}}|{{car.name}}|{{ car.year|date:'Y' }}">{{ car.year|date:"Y" }} {{car.make.name}} {{car.name}}</option>
                 {% endfor %}
             </select>
