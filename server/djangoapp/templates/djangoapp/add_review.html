@@ -32,10 +32,16 @@
     </header>
     <!--Header + Nav-->
     <main role="main" class="d-flex justify-content-center pt-3 ">
+        {% for car in carmake %}
+        <div>
+            <p>{{car.name}}</p>
+        </div>
+
+        {% endfor %}
         <form class="border border-dark p-4 w-auto h-auto text-center bg-light" action="{% url 'djangoapp:add_review' dealer_id %}"  method="post">
             {% csrf_token %}
             
-            <h1 class="text-center">Review for {{dealer_name}}</h1><br>
+            <h1 class="text-center">Review for {{dealer_name}}{{dealer_id}}</h1><br>
             <label for="name"><b>Name</b></label>
             <br>
             <input class="form-control" type="text" placeholder="Enter Your Name: " name="name" required>

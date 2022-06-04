@@ -136,7 +136,7 @@ def add_review(request, dealer_id):
     context = {}
     # If it is a GET request, just render the add_review page
     if request.method == 'GET':
-        url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/getalldealers"
+        url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/action-getreview"
         # Get dealers from the URL
         context = {
             "dealer_id": dealer_id,
