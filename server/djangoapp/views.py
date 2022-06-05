@@ -156,7 +156,7 @@ def add_review(request, dealer_id):
                 review["purchase"]=True
             else:
                 review["purchase"]=False
-            print(request.POST["car"])
+            #print(request.POST["car"])
             if review["purchase"] == True:
                 car_parts=request.POST["car"].split("|")
                 review["purchase_date"]=request.POST["purchase_date"] 
@@ -169,7 +169,7 @@ def add_review(request, dealer_id):
                 review["car_make"]=None
                 review["car_model"]=None
                 review["car_year"]=None
-            json_result = post_request("https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/action-api", review, dealerId=dealer_id)
+            json_result = post_request("https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/action-post-review", review, dealerId=dealer_id)
             
             if "error" in json_result:
                 context["message"] = "ERROR: Review was not submitted."
