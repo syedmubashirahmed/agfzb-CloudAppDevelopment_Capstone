@@ -32,7 +32,11 @@ def get_request(url, **kwargs):
 def post_request(url, payload, **kwargs):
     
     try:
+        review=dict()
         response = requests.post(url, params=kwargs, json=payload)
+       # response2=request.post(url,json=review)
+        print(params)
+        print(json)
     except Exception as e:
         print("Error" ,e)
     print("Status Code ", {response.status_code})

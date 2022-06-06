@@ -148,7 +148,7 @@ def add_review(request, dealer_id):
     elif request.method == 'POST':
         if (request.user.is_authenticated):
             review = dict()
-            review["id"]=0#placeholder
+            review["id"]=1000#placeholder
             review["name"]=request.POST["name"]
             review["dealership"]=dealer_id
             review["review"]=request.POST["content"]

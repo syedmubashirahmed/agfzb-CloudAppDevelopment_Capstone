@@ -32,12 +32,9 @@
     </header>
     <!--Header + Nav-->
     <main role="main" class="d-flex justify-content-center pt-3 ">
-        {% for car in carmake %}
-        <div>
-            <p>{{car.name}}</p>
-        </div>
-
-        {% endfor %}
+       
+        
+       
         <form class="border border-dark p-4 w-auto h-auto text-center bg-light" action="{% url 'djangoapp:add_review' dealer_id %}"  method="post">
             {% csrf_token %}
             
@@ -55,7 +52,7 @@
             <label for="car"><b>Select vehicle (if purchased)</b></label>
             <br>
             <select name="car" id="car" class="form-select" >
-                {% for car in carmodel %}
+                {% for car in cars %}
                     <option selected value="{{car.make.name}}|{{car.name}}|{{ car.year|date:'Y' }}">{{ car.year|date:"Y" }} {{car.make.name}} {{car.name}}</option>
                 {% endfor %}
             </select>
