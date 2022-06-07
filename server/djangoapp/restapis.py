@@ -10,7 +10,7 @@ from requests.auth import HTTPBasicAuth
 #                                     auth=HTTPBasicAuth('apikey', api_key))
 def get_request(url, **kwargs):
     
-    print("GET from {} ".format(url))
+    #print("GET from {} ".format(url))
     json_data={}
     try:
         if "apikey" in kwargs:
@@ -19,7 +19,7 @@ def get_request(url, **kwargs):
             response = requests.get(url, headers={'Content-Type':'application/json'}, params=kwargs)
 
         status_code = response.status_code
-        print("With status {} ".format(status_code))
+        #print("With status {} ".format(status_code))
         json_data = json.loads(response.text)
         #print(json_data)
     except Exception as e:
@@ -30,12 +30,13 @@ def get_request(url, **kwargs):
 # Create a `post_request` to make HTTP POST requests
 # e.g., response = requests.post(url, params=kwargs, json=payload)
 def post_request(url, payload, **kwargs):
-    
+    print("post-request-called")
     try:
-        review=dict()
-        response = requests.post(url, params=kwargs, json=payload)
+        
+       # response = requests.post(url,json=payload,params=kwargs)
+        response=requests.post(url,data=payload)
        # response2=request.post(url,json=review)
-        print(params)
+        
         print(json)
     except Exception as e:
         print("Error" ,e)
@@ -99,9 +100,9 @@ def get_dealer_reviews_from_cf(url, dealer_id):
     json_result = get_request(url, id=dealer_id)
     if "data" in json_result:
 
-        print(json_result)
+        #print(json_result)
         reviews = json_result["data"]["docs"]
-        print(reviews)
+        #print(reviews)
         # For each review object
     for review in reviews:
             review_obj = DealerReview(

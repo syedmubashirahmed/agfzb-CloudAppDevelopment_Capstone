@@ -145,34 +145,42 @@ def add_review(request, dealer_id):
         }
         #print(context)
         return render(request, 'djangoapp/add_review.html', context)
-    elif request.method == 'POST':
-        if (request.user.is_authenticated):
-            review = dict()
-            review["id"]=1000#placeholder
-            review["name"]=request.POST["name"]
-            review["dealership"]=dealer_id
-            review["review"]=request.POST["content"]
-            if ("purchasecheck" in request.POST):
-                review["purchase"]=True
-            else:
-                review["purchase"]=False
+def post_review(request,dealer_id):
+    url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/getalldealers"
+    context = {
+        "dealer_id": dealer_id,
+        "dealer_name": get_dealers_from_cf(url)[dealer_id-1].full_name,
+        "cars": CarModel.objects.all()
+        }
+        #elif request.method == 'POST':
+    if (request.user.is_authenticated):
+        review = dict()
+        review["id"]=1000#placeholder
+        review["name"]=request.POST["name"]
+        review["dealership"]=dealer_id
+        review["review"]=request.POST["content"]
+        if ("purchasecheck" in request.POST):
+            review["purchase"]=True
+        else:
+            review["purchase"]=False
             #print(request.POST["car"])
-            if review["purchase"] == True:
-                car_parts=request.POST["car"].split("|")
-                review["purchase_date"]=request.POST["purchase_date"] 
-                review["car_make"]=car_parts[0]
-                review["car_model"]=car_parts[1]
-                review["car_year"]=car_parts[2]
+        if review["purchase"] == True:
+            car_parts=request.POST["car"].split("|")
+            review["purchase_date"]=request.POST["purchase_date"] 
+            review["car_make"]=car_parts[0]
+            review["car_model"]=car_parts[1]
+            review["car_year"]=car_parts[2]
 
-            else:
-                review["purchase_date"]=None
-                review["car_make"]=None
-                review["car_model"]=None
-                review["car_year"]=None
-            json_result = post_request("https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/action-post-review", review, dealerId=dealer_id)
+        else:
+            review["purchase_date"]=None
+            review["car_make"]=None
+            review["car_model"]=None
+            review["car_year"]=None
+        json_result = post_request("https://eu-gb.functions.appdomain.cloud/api/v1/web/mmsyed47%40gmail.com_dev/myapis/action-post-review", review, dealerId=dealer_id)
             
-            if "error" in json_result:
-                context["message"] = "ERROR: Review was not submitted."
-            else:
-                context["message"] = "Review was submited"
-        return redirect("djangoapp:dealer_details", dealer_id=dealer_id)
+        if "error" in json_result:
+            context["message"] = "ERROR: Review was not submitted."
+        else:
+            context["message"] = "Review was submited"
+    #return redirect("djangoapp:dealer_details", dealer_id=dealer_id)
+    return redirect("djangoapp:dealer_details",dealer_id=dealer_id)

@@ -35,7 +35,7 @@
        
         
        
-        <form class="border border-dark p-4 w-auto h-auto text-center bg-light" action="{% url 'djangoapp:add_review' dealer_id %}"  method="post">
+        <form class="border border-dark p-4 w-auto h-auto text-center bg-light" action="{% url 'djangoapp:post_review' dealer_id %}"  method="post">
             {% csrf_token %}
             
             <h1 class="text-center">Review for {{dealer_name}}{{dealer_id}}</h1><br>
