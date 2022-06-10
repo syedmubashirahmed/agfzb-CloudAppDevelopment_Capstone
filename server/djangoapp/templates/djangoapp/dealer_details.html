@@ -31,7 +31,7 @@
     <main role="main" class="container pt-3">
         
             {% if reviews %}
-            <div class="card-columns">
+            <div class="card-body>
                 {% for review in reviews %}
                 
                     <div class="card" >
@@ -61,8 +61,8 @@
                                 <h5 class="card-title text-center pt-1">Write Your Own Review!</h5>
                         </div>
                         <div class="card-body text-center">
-                            <p class="card-text">Want to review this dealership?</p>
-                            <p class="card-text">Click the button below!</p>
+                           
+                            <p class="card-text">Click the button below to Review!</p>
                         </div>
                         <div class="card-footer text-center" style="min-height: 74px;">
                             {% if user.is_authenticated %}
